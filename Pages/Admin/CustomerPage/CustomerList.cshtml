@@ -1,0 +1,123 @@
+﻿@page
+@model BakeryProj.Pages.Admin.CustomerPage.CustomerListModel
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Http;
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<style>
+  .active-pink-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #f48fb1;
+  box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-pink input[type=text] {
+  border-bottom: 1px solid #f48fb1;
+  box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-purple-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #ce93d8;
+  box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-purple input[type=text] {
+  border-bottom: 1px solid #ce93d8;
+  box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan input[type=text] {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan .fa, .active-cyan-2 .fa {
+  color: #4dd0e1;
+}
+.active-purple .fa, .active-purple-2 .fa {
+  color: #ce93d8;
+}
+.active-pink .fa, .active-pink-2 .fa {
+  color: #f48fb1;
+}
+.searchbtn{
+  background: green;
+  color: black;
+  width: 30%;
+  height: auto;
+  border: 1px #4dd0e1;
+  border-left: none;
+  border-radius: 5%;
+}
+</style>
+@{
+    String account = HttpContext.Session.GetString("account");
+    @if(account != null && account == "Admin")
+    {
+        Layout = "_Layout";
+        <br />
+        <title>Danh sách khách hàng</title>
+        <div class="container row p-0 m-0">
+            <!--Search-->
+            <div class="col-md-3">
+                <form method="get" class="d-flex justify-content-center sm-form form-sm active-cyan-2 mt-2">
+                    <input class="form-control form-control-sm mr-1 w-100" type="text" asp-for="SearchString">
+                    <button type="submit" class="searchbtn"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <!--Search-->
+            <div class="col-9">
+                <h2 class="text-info">Customer List</h2>
+            </div>
+
+            <div class="col-15 border p-10 mt-3 w-100">
+                <form method="post">
+                    @if(Model.customers.Count() > 0)
+                    {
+                        <table class="table table-striped border">
+                            <tr class="table-secondary">
+                                <th>
+                                    <label asp-for="customers.FirstOrDefault().Id"></label>
+                                </th>
+                                <th>
+                                    <label asp-for="customers.FirstOrDefault().Email"></label>
+                                </th>
+                                @* <th>
+                                    <label asp-for="customers.FirstOrDefault().PasswordHash"></label>
+                                </th> *@
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            @foreach (var item in Model.customers)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m=>item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m=>item.Email)
+                                    </td>
+                                    @* <td>
+                                        @Html.DisplayFor(m=>item.PasswordHash)
+                                    </td> *@
+                                    <td>
+                                        <button asp-page-handler="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </td>
+                                    <td><a asp-page="/Admin/CustomerPage/Account" asp-page-handler="Accounts" asp-route-id="@item.Id" class="btn btn-success btn-sm">View</a></td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No Customer Available</p>
+                    }
+                </form>
+            </div>
+        </div>
+    }
+    else
+    {
+            @Html.Partial("_LoginAdminCondition");
+    }
+}    

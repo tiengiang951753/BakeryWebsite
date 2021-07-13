@@ -1,0 +1,37 @@
+﻿@page
+@model BakeryProj.Pages.Admin.CakePage.SearchModel
+@{
+    Layout = "_Layout2";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm sản phẩm</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css?fbclid=IwAR01F_gMoo0cJ8tx1eJRC0Tmm14FveeZxwDIB5qu6jEM0aujpeSGKuw9UhM">
+</head>
+<!--Sản phẩm-->
+<div class="container-xxl" style="margin-top: 20px;">    
+  <div class="row" >
+@foreach (var product in Model.products)
+  {
+    <div class="col-xl-3 p-2" >
+      <div class="sanpham">
+        <a href="#"><img src="~/Images/Products/Thumbnails/@product.ImageName" ></a>
+        <div class="details">
+        <a asp-page="/Admin/CakePage/CakeDetail" asp-route-id="@product.Id">
+          <div class="content">
+            Nhấn vào để xem chi tiết
+          </div>
+        </a>
+        </div>
+      </div>
+      <div class="tensanpham"><a href="#">@product.Name</a></div>
+      <div class="giatien">@string.Format("{0:#,##0}", product.Price) đ</div>
+    </div>
+}   
+  </div>  
+</div>
+<!--Sản phẩm-->

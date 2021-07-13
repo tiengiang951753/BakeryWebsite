@@ -1,0 +1,244 @@
+@using Microsoft.AspNetCore.Http;
+@using BakeryProj.Helpers;
+@using BakeryProj.Models;
+@{
+     String user = Context.Session.GetString("username");
+     List<Item> cart = new List<Item>();
+         if(user != null)
+            {
+                cart = SessionHelper.GetObjectFromJson<List<Item>>(Context.Session, user);
+            }
+        else
+            {
+                cart = SessionHelper.GetObjectFromJson<List<Item>>(Context.Session, "cart");
+            }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css?fbclid=IwAR01F_gMoo0cJ8tx1eJRC0Tmm14FveeZxwDIB5qu6jEM0aujpeSGKuw9UhM">
+</head>
+<style>
+  .active-pink-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #f48fb1;
+  box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-pink input[type=text] {
+  border-bottom: 1px solid #f48fb1;
+  box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-purple-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #ce93d8;
+  box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-purple input[type=text] {
+  border-bottom: 1px solid #ce93d8;
+  box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan input[type=text] {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan .fa, .active-cyan-2 .fa {
+  color: #4dd0e1;
+}
+.active-purple .fa, .active-purple-2 .fa {
+  color: #ce93d8;
+}
+.active-pink .fa, .active-pink-2 .fa {
+  color: #f48fb1;
+}
+.searchbtn{
+  float: left;
+  width: 10%;
+  padding: 10px;
+  background: green;
+  color: black;
+  font-size: 15px;
+  border: 1px #4dd0e1;
+  border-left: none;
+  border-radius: 5%;
+}
+</style>
+<body>
+<!-- Header -->
+<div class="container-xxl" style="background-color:#222020; padding-bottom: 10px;"> 
+    <div class="row" style="height: 40px;">
+      <div class="col-md-10"></div>
+      <div class="col-md-2" style="padding-left: 30px;">
+      <a href="#" class="fa fa-google" ></a>
+      <a href="#" class="fa fa-instagram"></a>
+      <a href="#" class="fa fa-facebook"></a>
+    </div>
+    </div>
+</div>
+
+<div class="container-xxl" style="background-color: #222020;">
+    <div class="row" >
+        <div class="col nuttrangchu">
+          <a href="/User/Index">
+            TRANG CHỦ
+          </a>
+        </div>
+        <div class="col nutsanpham">
+          <div class="dropdown ">
+            <a href="/CakePage/Category/?category=null" >SẢN PHẨM</a>
+             <div class="dropdown-content">
+            <a class="dropdown-item" asp-route-category="BM" asp-page="/Admin/CakePage/Category">Bánh mì</a>
+            <a class="dropdown-item" asp-route-category="BK" asp-page="/Admin/CakePage/Category">Bánh kem</a>
+            <a class="dropdown-item" asp-route-category="BN" asp-page="/Admin/CakePage/Category">Bánh nướng nhỏ</a>
+            <a class="dropdown-item" asp-route-category="BV" asp-page="/Admin/CakePage/Category">Bánh vòng </a>
+             </div>
+           </div>
+        </div>
+        <div class="col nutthongtin">
+          <a href="#" >THÔNG TIN</a>
+        </div>
+        <div class="col" ><div class="logo" style="display: flex;justify-content: center;"><img width="120px" height="120px" src="/images/logo.png" ></div></div>
+        <div class="col nutlienhe"  >
+          <a href="#">LIÊN HỆ</a>
+        </div>
+        <div class="col nutdangnhap">
+           @if(@user != null)
+            {
+              <div class="dropdown ">
+                  <a style="color: white;" asp-area="Identity" asp-page="/Account/Manage/Index" >@user</a>
+                <div class="dropdown-content">
+                      <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >
+                          <button type="submit" class="dropdown-item">Đăng xuất</button>
+                      </form>
+                      <a class="dropdown-item" asp-page="/Account/Manage/ChangePassword">Đổi mật khẩu</a>
+                </div>
+              </div>   
+            }
+            else
+            {
+              <div class="dropdown ">
+              <a asp-area="Identity" asp-page="/Account/Login">ĐĂNG NHẬP</a>
+                <div class="dropdown-content">
+                  <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
+                </div>
+            </div> 
+            }    
+         </div>
+        <div class="col nutgiohang">
+          <a class="nav-link text-white border border-success" asp-page="/Admin/CartPage/Cart"><svg width="20%" style="padding-bottom: 5%;padding-right: 5%;" height="1.5em" viewBox="0 0 16 16" class="bi bi-bag" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 1a2.5 2.5 0 0 0-2.5 2.5V4h5v-.5A2.5 2.5 0 0 0 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5H2z"/>
+                            </svg>Cart List &nbsp;
+                            @if(cart != null)
+                            {
+                                    <div class="d-inline p-1 bg-primary text-white">@cart.Count()</div>
+                            }
+                            else
+                            {
+                                    <div class="d-inline p-1 bg-success text-white">0</div>
+                            }
+            </a>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- Header -->
+
+<!-- Search -->
+    @Html.Partial("_SearchPatial")
+<!-- Search -->
+
+<div class="container" style="padding-top: 2%;">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+</div>
+
+<!--footer-->
+<div class="container-xxl p-0" style="margin-top: 260px;">
+  <div class="row">
+    <div class="col footer" style="padding-left: 40px;">
+      <img width="200px" height="200px" src="/images/logo.png" >
+    </div>
+    <div class="col footer" >
+      <div class="tieudefooter">THÔNG TIN CỬA HÀNG</div>
+      <div>Địa chỉ: 273 An D. Vương, Phường 3, Quận 5, Thành phố Hồ Chí Minh 700000</div>
+      
+    </div>
+    <div class="col footer" >
+      <div class="tieudefooter">LIÊN HỆ VỚI CHÚNG TÔI</div>
+      <div style="padding-bottom: 2px;">
+
+        <!--Icon điện thoại-->
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-telephone-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M2.267.98a1.636 1.636 0 0 1 2.448.152l1.681 2.162c.309.396.418.913.296 1.4l-.513 2.053a.636.636 0 0 0 .167.604L8.65 9.654a.636.636 0 0 0 .604.167l2.052-.513a1.636 1.636 0 0 1 1.401.296l2.162 1.681c.777.604.849 1.753.153 2.448l-.97.97c-.693.693-1.73.998-2.697.658a17.47 17.47 0 0 1-6.571-4.144A17.47 17.47 0 0 1 .639 4.646c-.34-.967-.035-2.004.658-2.698l.97-.969z"/>
+        </svg> (079) 902 8001</div>
+        <!--Icon điện thoại-->
+
+      <div style="padding-bottom: 2px;">
+
+        <!--Icon thành phố-->
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cursor-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+        </svg> Hồ Chí Minh</div>
+        <!--Icon thành phố-->
+
+      <div style="padding-bottom: 2px;">
+       
+        <!--Icon gmail-->
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+        </svg> info@kingbakery.gmail.com</div>
+        <!--Icon gmail-->
+
+    </div>
+    <div class="col footer" >
+      <div class="tieudefooter">BẢN ĐỒ</div>
+      <div ><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3919.6696579353975!2d106.6800696!3d10.7599224!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1b7c3ed289%3A0xa06651894598e488!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTw6BpIEfDsm4!5e0!3m2!1svi!2s!4v1603983848863!5m2!1svi!2s" width="250" height="150" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
+    </div>
+  </div>
+</div>
+ 
+<!--footer-->
+    <script src="/js/bootstrap.js"></script>
+    <script>
+        //khai báo biến slideIndex đại diện cho slide hiện tại
+        var slideIndex;
+        // KHai bào hàm hiển thị slide
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+               slides[i].style.display = "none";  
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+       
+            slides[slideIndex].style.display = "block";  
+            dots[slideIndex].className += " active";
+            //chuyển đến slide tiếp theo
+            slideIndex++;
+            //nếu đang ở slide cuối cùng thì chuyển về slide đầu
+            if (slideIndex > slides.length - 1) {
+              slideIndex = 0
+            }    
+            //tự động chuyển đổi slide sau 5s
+            setTimeout(showSlides, 5000);
+        }
+        //mặc định hiển thị slide đầu tiên 
+        showSlides(slideIndex = 0);
+       
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+      </script>   
+      @RenderSection("Scripts", required: false)
+</body>
+</html>

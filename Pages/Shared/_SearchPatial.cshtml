@@ -1,0 +1,15 @@
+@model BakeryProj.Pages.User.IndexModel
+<div class="container-xxl" style="background-color: #222020;padding-left: 0px;">
+    <div class="row" style="padding-bottom: 10px;" >
+        <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <div style="padding-top: 10px;">
+            <form method="post" class="form-inline d-flex justify-content-center sm-form form-sm active-cyan-2 mt-2">
+                <input class="form-control form-control-sm mr-1 w-50" type="text" asp-for="SearchString">
+                <button type="submit" class="searchbtn" asp-page="/Admin/CakePage/Search"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

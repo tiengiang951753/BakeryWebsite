@@ -1,0 +1,21 @@
+﻿@page
+@using Microsoft.AspNetCore.Http;
+@using BakeryProj.Helpers;
+@using BakeryProj.Models;
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+@{  
+    String account = HttpContext.Session.GetString("account");
+    @if(account == "Admin")
+    {
+        Layout = "_Layout";
+        <div style="text-align: center;"><img src="/images/naruto.gif" style="width: 50%; height: 50%; " /></div>
+    }
+    else
+    {
+        @Html.Partial("_LoginAdminCondition");
+    }
+}
+
+

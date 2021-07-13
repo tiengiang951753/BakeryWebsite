@@ -1,0 +1,77 @@
+@page
+@model RegisterModel
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>Đăng ký</title>
+</head>
+<style>
+.login-img{
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
+  margin-top: 5%;
+  margin-left: 10%;
+}
+ #login-container{
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  border-radius: 5px;
+  margin: center;
+  padding-top: 2%;
+  background-color: #99FFFF;
+
+} 
+.ask{
+  float: right;
+}
+.modal-content{
+  border-radius: 5%;
+}
+#form-login{
+  padding: 10px;
+}
+label{
+  font-weight: bold;
+  color: black;
+}
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+</style>
+<h1>@ViewData["Title"]</h1>
+
+<div class="container" id="login-container">
+    <div class="row" id="login-row"> 
+        <div class="col-sm-6" id="form-login">
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <h4>Create a new account.</h4>
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.ConfirmPassword"></label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+        </div>
+        <div class="col-6 w-100">
+                <img src="/images/Products/cake2.jpg" alt="cake" class="login-img"> 
+        </div> 
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

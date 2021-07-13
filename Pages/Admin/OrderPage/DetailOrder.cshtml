@@ -1,0 +1,57 @@
+﻿@page
+@model BakeryProj.Pages.Admin.OrderPage.DetailOrderModel
+@using Microsoft.AspNetCore.Http;
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+@{
+    String account = HttpContext.Session.GetString("account");
+    @if(account != null && account == "Admin")
+    {
+    Layout = "_Layout";
+    <br />
+        <title>Chi tiết đơn hàng</title>
+        <div class="container row p-0 m-0">
+            <div class="col-9">
+                <h2 class="text-info">Order Detail</h2>
+            </div>
+
+            <div class="col-15 border p-3 mt-3 w-100">
+                <form>
+                        <table class="table table-striped border">
+                            <tr class="table-secondary">
+                                <th>
+                                    <label asp-for="ordersdetail.FirstOrDefault().ID_Od"></label>
+                                </th>
+                                <th>
+                                    <label asp-for="ordersdetail.FirstOrDefault().Id"></label>
+                                </th>
+                                <th>
+                                    <label asp-for="ordersdetail.FirstOrDefault().Quantity_Order"></label>
+                                </th>
+                            </tr>
+                            @foreach (var item in Model.ListOrder)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m=>item.ID_Od)
+                                    </td>
+                                    <td>
+                                        <a asp-page="/Admin/CakePage/CakeList" asp-page-handler="Cake" asp-route-id="@item.Id" class="btn btn-success btn-sm">@Html.DisplayFor(m=>item.Id)</a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m=>item.Quantity_Order)
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                </form>
+            </div>
+        </div>
+    }
+    else
+    {
+         @Html.Partial("_LoginAdminCondition");
+    } 
+}
+

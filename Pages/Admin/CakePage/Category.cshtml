@@ -1,0 +1,69 @@
+﻿@page
+@model BakeryProj.Pages.Admin.CakePage.CategoryModel
+@{
+    Layout = "_Layout2";
+}
+<style>
+  h1{
+    margin-left: 2%;
+  }
+</style>
+@if (Model.products.Count>20)
+{
+    <div style="background-color: skyblue; margin-left: 1%; margin-bottom: 2%;"><a class="col-sm-9 font-weight-bold font-italic text-decoration-none" asp-page="/User/Index">Trang chủ</a> > <a class="font-weight-bold font-italic text-decoration-none" href="/Admin/CakePage/Category/?category=null">Sản phẩm</a></div>
+    <h1>Tất cả bánh</h1>
+}
+else
+{
+  <div style="background-color: skyblue; margin-left: 1%; margin-bottom: 2%;"><a class="col-sm-9 font-weight-bold font-italic text-decoration-none" asp-page="/User/Index">Trang chủ</a> > <a class="font-weight-bold font-italic text-decoration-none" href="/Admin/CakePage/Category/?category=null">Sản phẩm</a> > <a class="text-decoration-none font-weight-bold font-italic" href="/Admin/CakePage/Category/?category=@Model.products.ElementAt(0).Category">@Model.products.ElementAt(0).Category</a></div>
+  @switch (Model.products.ElementAt(0).Category)
+  { 
+    case "BM":
+    <h1>Bánh Mì</h1>
+    break;
+
+    case "BN":
+    <h1>Bánh Nướng</h1>
+    break;
+
+    case "BV":
+    <h1>Bánh Vòng</h1>
+    break;
+
+    case "BK":
+    <h1>Bánh Kem</h1>
+    break;
+  }
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<!--Sản phẩm-->
+<div class="container-xxl" style="margin-top: 20px;">    
+  <div class="row" >
+@foreach (var product in Model.products)
+  {
+    <div class="col-xl-3 p-2" >
+      <div class="sanpham">
+        <a href="#"><img src="~/Images/Products/Thumbnails/@product.ImageName" ></a>
+        <div class="details">
+        <a asp-page="/Admin/CakePage/CakeDetail" asp-route-id="@product.Id">
+          <div class="content" style="text-align: center;">
+            Nhấn vào để xem chi tiết
+          </div>
+        </a>
+        </div>
+      </div>
+      <div class="tensanpham"><a href="#">@product.Name</a></div>
+      <div class="giatien">@string.Format("{0:#,##0}", product.Price) đ</div>
+    </div>
+}   
+  </div>  
+</div>
+<!--Sản phẩm-->

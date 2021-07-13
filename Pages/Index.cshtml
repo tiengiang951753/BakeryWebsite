@@ -1,0 +1,97 @@
+﻿@page
+@model BakeryProj.Pages.User.IndexModel
+@{
+    Layout = "_Layout1";
+    ViewData["Title"] = "Home page";
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="/css/layout.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<!--Tiêu đề danh mục sản phẩm-->
+<div class="container-md"> 
+  <div class="row" style="margin-top: 10px;border-bottom: 2px solid gray;">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="margin-top:20px;">
+    <div class="tieudedmsp"><a href="#">DANH MỤC SẢN PHẨM </a></div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+<!--Tiêu đề danh mục sản phẩm-->
+
+<!--Danh mục sản phẩm-->
+<div class="container-xxl" >
+  <div class="row">
+    <div class="col-xl-6 dm1 p-0"  >
+      <div class="dm1effect">
+      <a asp-route-category="BK" asp-page="/Admin/CakePage/Category"><div>BÁNH KEM</div></a>
+      </div>
+    </div>
+    <div class="col-xl-3 dm2 p-0" >
+      <div class="dm2effect">
+      <a asp-route-category="BM" asp-page="/Admin/CakePage/Category"><div>BÁNH MÌ</div></a>
+      </div>
+    </div>
+    <div class="col-xl-3 mb-2">
+      <div class="row">
+        <div class="col-xl dm3 p-0 " >
+          <div class="dm3effect">
+          <a asp-route-category="BN" asp-page="/Admin/CakePage/Category"><div>BÁNH NƯỚNG NHỎ</div></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl dm4 p-0" >
+          <div class="dm4effect">
+          <a asp-route-category="BV" asp-page="/Admin/CakePage/Category"><div>BÁNH VÒNG</div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Danh mục sản phẩm-->
+
+<!--Tiêu đề sản phảm mới-->
+<div class="container-md"> 
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="margin-top:20px;">
+    <div class="tieudespmn">SẢN PHẨM MỚI NHẤT </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+<!--Tiêu đề sản phảm mới-->
+
+<!--Sản phẩm-->
+<div class="container-xxl" style="margin-top: 20px;">    
+  <div class="row" >
+    @foreach (var product in Model.Products.Take(16))
+    {
+    <div class="col-xl-3 p-2" >
+      <div class="sanpham">
+        <a href="#"><img src="~/Images/Products/Thumbnails/@product.ImageName" ></a>
+        <div class="details">
+        <a asp-page="/Admin/CakePage/CakeDetail" asp-route-id="@product.Id">
+          <div class="content" style="text-align: center;">
+            Nhấn vào để xem chi tiết
+          </div>
+        </a>
+        </div>
+      </div>
+      <div class="tensanpham"><a href="#">@product.Name</a></div>
+      <div class="giatien">@string.Format("{0:#,##0}", product.Price) đ</div>
+    </div>
+    }
+  </div>
+</div>
+</html>

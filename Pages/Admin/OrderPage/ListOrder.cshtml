@@ -1,0 +1,157 @@
+﻿@page
+@model BakeryProj.Pages.Admin.OrderPage.ListOrderModel
+@using Microsoft.AspNetCore.Http;
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css?fbclid=IwAR01F_gMoo0cJ8tx1eJRC0Tmm14FveeZxwDIB5qu6jEM0aujpeSGKuw9UhM">
+</head>
+<style>
+  .active-pink-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #f48fb1;
+  box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-pink input[type=text] {
+  border-bottom: 1px solid #f48fb1;
+  box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-purple-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #ce93d8;
+  box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-purple input[type=text] {
+  border-bottom: 1px solid #ce93d8;
+  box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan input[type=text] {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan .fa, .active-cyan-2 .fa {
+  color: #4dd0e1;
+}
+.active-purple .fa, .active-purple-2 .fa {
+  color: #ce93d8;
+}
+.active-pink .fa, .active-pink-2 .fa {
+  color: #f48fb1;
+}
+.searchbtn{
+  background: green;
+  color: black;
+  width: 30%;
+  height: auto;
+  border: 1px #4dd0e1;
+  border-left: none;
+  border-radius: 5%;
+}
+</style>
+@{
+    String account = HttpContext.Session.GetString("account");
+    @if(account != null && account == "Admin")
+    {
+        Layout = "_Layout";
+        <br />
+            <title>Danh sách đơn hàng</title>
+            <div>
+                    <h2 class="text-info" style="text-align: center; margin-bottom: 2%;">Order List</h2>
+            </div>
+            <!--Search-->
+            <div class="col-md-3">
+                <form method="get" class="d-flex justify-content-center sm-form form-sm active-cyan-2 mt-2">
+                    <input class="form-control form-control-sm mr-1 w-100" type="text" asp-for="SearchString">
+                    <button type="submit" class="searchbtn"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <!--Search-->
+            <div class="container row p-0 m-0">
+                <div class="col-20 border p-12 mt-3 w-150">
+                    <form method="post">
+                        @if (Model.orders.Count() > 0)
+                        {
+                            <table class="table table-striped border">
+                                <tr class="table-secondary">
+                                    <th>
+                                        <label asp-for="orders.FirstOrDefault().ID_Od"></label>
+                                    </th>
+                                    <th>
+                                        <label asp-for="orders.FirstOrDefault().ID_Cs"></label>
+                                    </th>
+                                    <th>
+                                        <label asp-for="orders.FirstOrDefault().Name_Cs"></label>
+                                    </th>
+                                    <th>
+                                        <label asp-for="orders.FirstOrDefault().Address"></label>
+                                    </th>
+                                    <th>
+                                        <label asp-for="orders.FirstOrDefault().PhoneNumber"></label>
+                                    </th>
+                                    <th>
+                                        <label asp-for="orders.FirstOrDefault().Total_Quantity"></label>
+                                    </th>
+                                    <th>
+                                        <label asp-for="orders.FirstOrDefault().Total_Price"></label>
+                                    </th>
+                                    <th>
+                                        <label asp-for="orders.FirstOrDefault().Date"></label>
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                @foreach (var item in Model.orders)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m=>item.ID_Od)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m=>item.ID_Cs)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m=>item.Name_Cs)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m=>item.Address)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m=>item.PhoneNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m=>item.Total_Quantity)
+                                        </td>
+                                        <td>
+                                             @string.Format("{0:#,##0}", item.Total_Price) đ
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m=>item.Date)
+                                        </td>
+                                        <td>
+                                        <td><a asp-page="/Admin/OrderPage/DetailOrder" asp-route-ID_Od="@item.ID_Od"
+                    class="btn btn-success btn-sm">Find Detail</a></td>
+                                    </tr>
+                                }
+                            </table>
+                            @if(Model.orders.Count() > 1)
+                            {
+                                    <h1 style="color: Blue;">Tổng tiền bán được: @string.Format("{0:#,##0}", Model.Sum) đ</h1>
+                            }
+                        }
+                        else
+                        {
+                            <p>No Order Available</p>
+                        }
+                    </form>
+                </div>
+            </div>
+    }
+    else
+    {
+        @Html.Partial("_LoginAdminCondition");
+    } 
+    
+}
+

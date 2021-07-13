@@ -1,0 +1,31 @@
+﻿@page
+@model BakeryProj.Pages.Admin.CustomerPage.EditAccountModel
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<br/>
+<title>Điều chỉnh thông tin khách hàng</title>
+<div class="border container" style="padding:30px;">
+    <h2 class="text-info">Edit Account</h2>
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" asp-for="account.Id" />
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="account.Permission"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="account.Permission" class="form-control" />
+            </div>
+            <span asp-validation-for="account.Permission" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-4">
+                <input type="submit" value="Edit " class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="/Admin/CustomerPage/Account" class="btn btn-success form-control">Back to customers List</a>
+            </div>
+        </div>
+    </form>
+</div>

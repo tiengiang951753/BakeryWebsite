@@ -1,0 +1,500 @@
+
+.nutlienhe a{
+    text-decoration: none;
+    color: white;
+}
+.nuttrangchu a{
+    text-decoration: none;
+    color: white;
+}
+.nutsanpham a{
+    text-decoration: none;
+    color: white;
+}
+.nutgiohang a{
+    text-decoration: none;
+    color: white;
+}
+.nutthongtin a{
+    text-decoration: none;
+    color: white;
+}
+.nutdangnhap a{
+    text-decoration: none;
+    color: white;
+}
+.nuttrangchu a:hover{
+    color:#D4AC0D  ;
+}
+.nutsanpham a:hover{
+    color:#D4AC0D  ;
+}
+.nutlienhe a:hover{
+    color:#D4AC0D  ;
+}
+.nutthongtin a:hover{
+    color:#D4AC0D  ;
+}
+.nutdangnhap a:hover{
+    color:#D4AC0D  ;
+}
+.nutgiohang a:hover{
+    color:#D4AC0D  ;
+}
+.dm1 a{
+    text-decoration: none;
+    color: white;
+}
+.dm2 a{
+    text-decoration: none;
+    color: white;
+}
+.dm3 a{
+    text-decoration: none;
+    color: white;
+}
+.dm4 a{
+    text-decoration: none;
+    color: white;
+}
+
+.sanpham{
+    align-items: center;
+    justify-content: center;
+    border-style: groove;
+    border: 8px double black;
+    padding: 10px;
+    text-align: center;
+}
+.sanpham img{
+    width: 180px;
+    height: 180px;
+    transition: transform 2s;
+    display: inline-block;
+}
+.col-xl-3 .sanpham{
+    position: relative;
+}
+.col-xl-3 .sanpham img{
+    transition: transform 2s;
+    padding: 6px;
+}
+.col-xl-3:hover .sanpham img{
+    transform: scale(1.2);
+}
+.col-xl-3 .sanpham .details{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background: rgba(0, 0, 0, .3);
+    transform: scaleY(0);
+    transition: transform .5s;
+}
+.col-xl-3 .sanpham:hover .details{
+    transform: scaleY(1);
+}
+.col-xl-3 .sanpham .details .content{
+    top: 50%;
+    left: 25%;
+    right: 25%;
+    position: absolute;
+    transform: translateY(-50%);
+    font-weight: bold;
+    margin: 0 auto;
+    color: white;
+    text-align: center;
+}
+.tensanpham{
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 10px;
+}
+.giatien{
+    font-style: arial;
+    font-weight: 500;
+}
+.tensanpham a{
+    text-decoration: none;
+    color: black;
+}
+.giohang{
+    border: 2px solid black;
+    text-align:right;
+}
+.tieudedmsp a{
+    text-decoration: none;
+    color: black;
+}
+.container-fluid{
+    float: right;
+}
+.nuttrangchu{
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    font-size: 15px;
+    border-right: 2px solid gray;
+}
+.nutsanpham {
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    font-size: 15px;
+    border-right: 2px solid gray;
+}
+.nutlienhe{
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    font-size: 15px;
+    border-right: 2px solid gray;
+}
+.nutthongtin{
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    font-size: 15px;
+}
+.nutdangnhap{
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    font-size: 15px;
+    border-right: 2px solid gray;
+}
+.nutgiohang{
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.thanhtimkiem{
+    height: auto;
+    width: 87%;
+    padding: 5px;
+    border:1px solid black;
+    border-radius: 20px;
+}
+.nuttimkiem{
+    width: 18%;
+    border: 1px solid black;
+    font-weight: bold;
+    border-radius: 20px;
+    padding-bottom: 2px;
+    background-color: #F7DC6F;
+}
+
+.tieudespmn{
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid gray;
+}
+.tieudedmsp{
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    
+}
+.footer{
+    background-color: #222020;
+    color: white;
+    padding-top: 10px;
+}
+.tieudefooter{
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.dm1{
+    background-image: url("../images/cake11.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 10px solid white;
+    height: 500px;
+    line-height: 900px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    transition: tranforms 2s;
+
+}
+.dm2{
+    background-image: url("../images/bread1.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 10px solid white;
+    height: 500px;
+    line-height: 900px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+.dm3{
+    background-image: url("../images/cupcake1.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 10px solid white;
+    height: 250px;
+    line-height: 400px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+.dm4{
+    background-image: url("../images/bagel1.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 10px solid white;
+    height: 250px;
+    line-height: 400px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 10px 10px;
+    z-index: 1;
+    border-radius: 5px;
+    text-align: left;
+    width: 100%;
+}
+.dropdown-item{
+    color: white;
+    font-weight: bold;
+    transition: 0.7s;
+    background: -webkit-linear-gradient(0deg,transparent 50%,#F7DC6F 50%);
+    background-size: 400px 80px;
+    margin: 5px 0px;
+}
+.dropdown-item:hover{
+    background-position: 200px 0;
+    color: black;
+}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.fa {
+    font-size: 20px;
+    width: 40px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+    color: white;
+    background: #3B5998;
+}
+.fa-google {
+    color: white;
+    background: #dd4b39;
+}
+.fa-instagram {
+    color: white;
+    background: #125688;
+}
+* {
+    box-sizing:border-box
+}
+h2 {
+    text-align: center;
+}
+/* Slideshow container */
+.slideshow-container {
+    max-width: 500px;
+    position: relative;
+    margin: auto;
+}
+    /* Ẩn các slider */
+.mySlides {
+    display: none;
+}
+    /* Định dạng nội dung Caption */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+    
+    /* định dạng các chấm chuyển đổi các slide */
+.dot {
+    cursor:pointer;
+    height: 13px;
+    width: 13px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+    /* khi được hover, active đổi màu nền */
+.active, .dot:hover {
+    background-color: #717171;
+}
+    
+    /* Thêm hiệu ứng khi chuyển đổi các slide */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 5s;
+    animation-name: fade;
+    animation-duration: 5s;
+}
+.dm1effect{
+    height: 480px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.dm1effect::after {
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%) repeat scroll 0 0;
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: -75%;
+    top: 0;
+    transform: skewX(-25deg);
+    width: 50%;
+    z-index: 2;
+    content: "";  
+}
+.dm1effect:hover::after {
+    animation: 1s ease 0s normal none 1 running fixedAnim;
+    -webkit-animation: 1s ease 0s normal none 1 running fixedAnim;
+    -moz-animation: 1s ease 0s normal none 1 running fixedAnim;
+    animation: 1s ease 0s normal none 1 running fixedAnim;
+}
+.dm2effect{
+    height: 500px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.dm2effect::after {
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: -75%;
+    top: 0;
+    transform: skewX(-25deg);
+    width: 50%;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%) repeat scroll 0 0;     
+}
+.dm2effect:hover::after {
+    animation: 1s ease 0s normal none 1 running fixedAnim;
+    -webkit-animation: 1s ease 0s normal none 1 running fixedAnim;
+    -moz-animation: 1s ease 0s normal none 1 running fixedAnim;
+    animation: 1s ease 0s normal none 1 running fixedAnim;
+}
+
+.dm3effect{
+    height: 250px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.dm3effect::after {
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: -75%;
+    top: 0;
+    transform: skewX(-25deg);
+    width: 50%;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%) repeat scroll 0 0; 
+}
+.dm3effect:hover::after {
+    animation: 1s ease 0s normal none 1 running fixedAnim;
+    -webkit-animation: 1s ease 0s normal none 1 running fixedAnim;
+    -moz-animation: 1s ease 0s normal none 1 running fixedAnim;
+    animation: 1s ease 0s normal none 1 running fixedAnim;
+}
+
+.dm4effect{
+    height: 250px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.dm4effect::after {
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: -75%;
+    top: 0;
+    transform: skewX(-25deg);
+    width: 50%;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%) repeat scroll 0 0;       
+}
+.dm4effect:hover::after {
+    animation: 1s ease 0s normal none 1 running fixedAnim;
+    -webkit-animation: 1s ease 0s normal none 1 running fixedAnim;
+    -moz-animation: 1s ease 0s normal none 1 running fixedAnim;
+    animation: 1s ease 0s normal none 1 running fixedAnim;
+}
+    
+@-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+    
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+@-webkit-keyframes fixedAnim {
+    0% {
+        right: 100%;
+    }
+    125% {
+        right: 0;
+    }
+}
+  
+@-moz-keyframes fixedAnim {
+    0% {
+        right: 100%;
+    }
+    125% {
+        right: 0;
+    }
+}
+  
+@keyframes fixedAnim {
+    0% {
+        right: 100%
+    }
+    125% {
+        right: 0;
+    }
+}
+
+         
